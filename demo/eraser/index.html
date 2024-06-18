@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Polygon Clipping</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+        }
+        #controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #controls button, #controls input {
+            margin: 0 5px;
+        }
+        #clippedImages {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #clippedImages img {
+            margin: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="imageLoader" accept="image/*">
+    <canvas id="drawingCanvas" width="800" height="600"></canvas>
+    <div id="controls">
+        <button id="drawMode">Draw</button>
+        <button id="eraseMode">Erase</button>
+        <input type="color" id="eraseColor" value="#ffffff">
+        <button id="clipMode">Clip Polygon</button>
+        <button id="finishPolygon">Finish Polygon</button>
+    </div>
+    <div id="clippedImages"></div>
+    <script src="script.js"></script>
+</body>
+</html>
