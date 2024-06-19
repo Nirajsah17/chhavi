@@ -1,7 +1,7 @@
 export default function ImgGRids({ files, openFile }) {
   return (
     <>
-      {files.map((file) => {
+      {files?.map((file) => {
         const url = URL.createObjectURL(file);
         return (
           <img

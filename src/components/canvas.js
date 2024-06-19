@@ -16,7 +16,7 @@ function Canvas({ activeBitmap }) {
   const layer = useRef(null);
   const count = useRef(0);
   const imageRef = useRef(0);
-  const scaleBy = 1.01;
+  const scaleBy = 1.08;
 
   const keyDownHandler = (e) => {
     console.log(e);
