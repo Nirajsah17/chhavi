@@ -8,11 +8,12 @@ function LeftNav({ fileHandler }) {
   const handleUpload = (e) => {
     const el = document.createElement("input");
     el.setAttribute("type", "file");
+    el.setAttribute("accept", "image/*");
+    el.setAttribute("multiple", "true");
     el.click();
     el.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      fileHandler(file)
-      // console.log(file);
+      const files = e.target.files;
+      fileHandler([...files]);
     });
   };
 
@@ -25,8 +26,8 @@ function LeftNav({ fileHandler }) {
         src={uploader}
         onClick={handleUpload}
       />
-      {/* <img className="p-1 cursor-pointer" title="Open image" alt="image" src={imageIcon} />
-      <img className="p-1 cursor-pointer" title="Upload video" alt="video" src={videoIcon} /> */}
+      <img className="p-1 cursor-pointer" title="Open image" alt="image" src={imageIcon} />
+      <img className="p-1 cursor-pointer" title="Upload video" alt="video" src={videoIcon} />
       <img
         className="p-1 cursor-pointer"
         title="Settings"
