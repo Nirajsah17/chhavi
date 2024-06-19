@@ -36,6 +36,7 @@ function App() {
                 <Route path="assets" element={<SideBar navItem="assets" files={files} openFile={openFile}/>} />
                 <Route path="/filter" element={<SideBar navItem="filter"/>} />
                 <Route path="/settings" element={<SideBar navItem="settings"/>} />
+                <Route path="/free-hand" element={<SideBar navItem="free-hand"/>} />
               </Routes>
             </div>
             <div id="canvas" className="w-full bg-bg-accentEmphasis">

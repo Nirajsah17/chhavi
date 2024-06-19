@@ -41,10 +41,10 @@ function Canvas({ activeBitmap }) {
     setIsDrawEnable(true);
     const pos = stage.current.getRelativePointerPosition();
     console.log(pos);
-    const normalizedX = pos.x * imgOptions.ratio + imgOptions.x;
-    const normalizedY = pos.y * imgOptions.ratio + imgOptions.y;
+    const normalizedX = (pos.x * imgOptions.ratio) + imgOptions.x;
+    const normalizedY = (pos.y * imgOptions.ratio) + imgOptions.y;
     console.log(normalizedX, normalizedY);
-    setPoints((prevPoints) => [...prevPoints, normalizedX, normalizedY]);
+    setPoints((prevPoints) => [...prevPoints, pos.x, pos.y]);
   };
 
   const onUp = (e) => {
@@ -60,9 +60,9 @@ function Canvas({ activeBitmap }) {
   const onMove = (e) => {
     if (!isDrawEnable) return;
     const pos = stage.current.getRelativePointerPosition();
-    const normalizedX = pos.x * imgOptions.ratio + imgOptions.x;
-    const normalizedY = pos.y * imgOptions.ratio + imgOptions.y;
-    setPoints((prevPoints) => [...prevPoints, normalizedX, normalizedY]);
+    const normalizedX = (pos.x * imgOptions.ratio) + imgOptions.x;
+    const normalizedY = (pos.y * imgOptions.ratio) + imgOptions.y;
+    setPoints((prevPoints) => [...prevPoints, pos.x ,pos.y]);
   };
 
   useEffect(() => {

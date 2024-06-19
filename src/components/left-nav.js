@@ -2,10 +2,10 @@ import uploader from "../svg/cloudupload.svg";
 import imageIcon from "../svg/image.svg";
 import videoIcon from "../svg/videocamera.svg";
 import settingsIcon from "../svg/settingscog.svg";
+import pen from "../svg/pen.svg"
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-// import uploader from "../svg/cloudupload.svg"
 
 function LeftNav({ fileHandler }) {
   const [activeTab, setActiveTab] = useState("");
@@ -75,6 +75,22 @@ function LeftNav({ fileHandler }) {
             title="Settings"
             alt="settings"
             src={settingsIcon}
+          />
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "nav-link bg-blue-500 text-white rounded-sm"
+              : "nav-link text-gray-500 hover:text-gray-700"
+          }
+          to="/free-hand"
+        >
+          <img
+            className="p-1 cursor-pointer"
+            title="Settings"
+            alt="settings"
+            src={pen}
           />
         </NavLink>
       </>

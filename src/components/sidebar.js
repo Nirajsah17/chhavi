@@ -1,9 +1,9 @@
 import ImgGRids from "./image-list";
 import Filter from "./filter";
 import Settings from "./settings";
+import FreeHand from "./free-hand";
 
 export default function SideBar({ navItem, files, openFile }) {
-  console.log(navItem);
   switch (navItem) {
     case "assets":
       return <ImgGRids files={files} openFile={openFile} />;
@@ -11,6 +11,8 @@ export default function SideBar({ navItem, files, openFile }) {
       return <Filter />;
     case "settings":
       return <Settings />;
+    case "free-hand":
+      return <FreeHand />
     default:
       return <ImgGRids files={files} openFile={openFile} />;
   }
