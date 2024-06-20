@@ -2,6 +2,12 @@ import uploader from "../svg/cloudupload.svg";
 import imageIcon from "../svg/image.svg";
 import videoIcon from "../svg/videocamera.svg";
 import settingsIcon from "../svg/settingscog.svg";
+import filterIcon from "../svg/filter.svg";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+
+
 import pen from "../svg/pen.svg";
 
 import { NavLink } from "react-router-dom";
@@ -18,7 +24,7 @@ function LeftNav({ fileHandler }) {
       const files = e.target.files;
       fileHandler([...files]);
     });
-    
+
   };
 
   return (
@@ -55,9 +61,9 @@ function LeftNav({ fileHandler }) {
       >
         <img
           className="p-1 cursor-pointer"
-          title="Upload video"
-          alt="video"
-          src={videoIcon}
+          title="Filter"
+          alt="filter"
+          src={filterIcon}
         />
       </NavLink>
       <NavLink
@@ -91,6 +97,7 @@ function LeftNav({ fileHandler }) {
           src={pen}
         />
       </NavLink>
+      <FontAwesomeIcon icon={faHome} />
     </>
   );
 }
