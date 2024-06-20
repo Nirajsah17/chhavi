@@ -18,8 +18,6 @@ export default function Filter({}) {
     kaleidoscope: 20,
   });
 
-  const [value, setValue] = useState(20);
-
   const handleSlider = (e) => {
     setFilter({
      ...filters,
