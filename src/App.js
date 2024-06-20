@@ -4,6 +4,7 @@ import LeftNav from "./components/left-nav";
 import SideBar from "./components/sidebar";
 import Canvas from "./components/canvas";
 import NavBar from "./components/navbar";
+import Footer from "./components/footer";
 
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
@@ -25,15 +26,15 @@ function App() {
   return (
     <>
       <Router>
-        <div className="w-full h-screen flex flex-col">
-          <div className="w-full flex h-12 p-1 border border-b border-fg-default">
+        <div className="w-full h-screen flex flex-col text-fg-default">
+          <div className="w-full flex max-h-12 shadow-lg">
             <NavBar></NavBar>
           </div>
-          <div className="w-full flex flex-1 p-1">
-            <div className="flex flex-col w-12">
+          <div className="w-full flex flex-1">
+            <div className="flex flex-col w-12 h-full bg-bg-default shadow-lg">
               <LeftNav fileHandler={fileHandler}></LeftNav>
             </div>
-            <div className="flex flex-wrap w-72 h-full border border-fg-default">
+            <div className="flex flex-wrap w-72 h-full bg-bg-inset">
               <Routes>
                 <Route path="/" element={<SideBar navItem="default" />} />
                 <Route path="assets" element={<SideBar navItem="assets" files={files} openFile={openFile}/>} />
@@ -42,11 +43,13 @@ function App() {
                 <Route path="/free-hand" element={<SideBar navItem="free-hand"/>} />
               </Routes>
             </div>
-            <div id="canvas" className="w-full bg-bg-accentEmphasis">
+            <div id="canvas" className="w-full bg-canvas-default">
               <Canvas activeBitmap={activeBitmap}></Canvas>
             </div>
           </div>
-          <div className="w-full flex h-12 p-1 border border-t border-fg-default"></div>
+          <div className="w-full flex max-h-12 bg-bg-default shadow-lg">
+          <Footer/>
+          </div>
         </div>
       </Router>
     </>
