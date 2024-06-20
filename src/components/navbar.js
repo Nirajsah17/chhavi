@@ -22,7 +22,7 @@ export default function NavBar({}) {
       <div className="w-full flex flex-row bg-bg-default justify-between items-center">
           {/* <img src={AppIcon} width={200} height={150}></img> */}
           <h1 className="p-1 text-lg text-pretty text-fg-accent font-semibold font-sans">Chhavi</h1>
-        <div>2</div>
+        <div></div>
         <div className="p-1">
           <label className="inline-flex items-center cursor-pointer" title="dark/light">
             <input type="checkbox" value="" className="sr-only peer" onChange={toggleTheme} />

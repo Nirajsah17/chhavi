@@ -5,7 +5,7 @@ export default function ImgGRids({ files, openFile }) {
         const url = URL.createObjectURL(file);
         return (
           <img
-            className="p-1 w-14 h-14 rounded-sm cursor-pointer border border-accent-emphasis hover:border-2 hover:border-accent-emphasis"
+            className="p-1 w-14 h-14 rounded-sm cursor-pointer border border-border-default hover:border-2 hover:border-border-default"
             src={url}
             key={file.name}
             alt={file.name}

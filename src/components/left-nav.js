@@ -18,6 +18,7 @@ function LeftNav({ fileHandler }) {
       const files = e.target.files;
       fileHandler([...files]);
     });
+    
   };
 
   return (

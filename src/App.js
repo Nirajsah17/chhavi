@@ -34,7 +34,7 @@ function App() {
             <div className="flex flex-col w-12 h-full bg-bg-default shadow-lg">
               <LeftNav fileHandler={fileHandler}></LeftNav>
             </div>
-            <div className="flex flex-wrap w-72 h-full bg-bg-inset">
+            <div className="flex flex-wrap w-72 h-full bg-bg-inset overflow-y-auto  scroll-smooth fancy-scrollbar fancy-thumb">
               <Routes>
                 <Route path="/" element={<SideBar navItem="default" />} />
                 <Route path="assets" element={<SideBar navItem="assets" files={files} openFile={openFile}/>} />
