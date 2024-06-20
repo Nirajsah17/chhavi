@@ -13,7 +13,6 @@ export default function FreeHand({}){
       </div>
       <div></div>
     </div>
-    
     </>
   )
 }

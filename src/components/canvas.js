@@ -12,6 +12,7 @@ function Canvas({ activeBitmap }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [panning, setPanning] = useState(false);
   const [imgOptions, setImgOptions] = useState({});
+  const [isClosed, setIsClosed] = useState(false);
   const stage = useRef(null);
   const layer = useRef(null);
   const count = useRef(0);
@@ -32,6 +33,7 @@ function Canvas({ activeBitmap }) {
     EDIT: "EDIT",
     MOVE: "MOVE",
     LOCK: "LOCK",
+    PAINT: "PAINT"
   };
 
   const [MODE, SETMODE] = useState(MODES.DRAW);
@@ -40,21 +42,33 @@ function Canvas({ activeBitmap }) {
     if (panning) return;
     setIsDrawEnable(true);
     const pos = stage.current.getRelativePointerPosition();
-    console.log(pos);
     const normalizedX = (pos.x * imgOptions.ratio) + imgOptions.x;
     const normalizedY = (pos.y * imgOptions.ratio) + imgOptions.y;
-    console.log(normalizedX, normalizedY);
-    setPoints((prevPoints) => [...prevPoints, pos.x, pos.y]);
+
+    switch(MODE){
+      case MODES.PAINT :
+        setPoints((prevPoints) => [...prevPoints, pos.x, pos.y]);
+        break;
+      case MODES.DRAW :
+        setPoints((prevPoints) => [...prevPoints, pos.x, pos.y]);
+        break;
+    }
+
   };
 
   const onUp = (e) => {
     count.current += 1;
-    setIsDrawEnable(false);
-    setElements((prevElements) => [
-      ...prevElements,
-      { points: points, fill: fill, key: count.current },
-    ]);
-    setPoints([]);
+
+    switch(MODE){
+      case MODES.PAINT :
+        setIsDrawEnable(false);
+        setElements((prevElements) => [
+          ...prevElements,
+          { points: points, fill: fill, key: count.current },
+        ]);
+        setPoints([]);
+        break;
+    }
   };
 
   const onMove = (e) => {
@@ -62,13 +76,33 @@ function Canvas({ activeBitmap }) {
     const pos = stage.current.getRelativePointerPosition();
     const normalizedX = (pos.x * imgOptions.ratio) + imgOptions.x;
     const normalizedY = (pos.y * imgOptions.ratio) + imgOptions.y;
-    setPoints((prevPoints) => [...prevPoints, pos.x ,pos.y]);
+    switch(MODE){
+      case MODES.PAINT :
+        setPoints((prevPoints) => [...prevPoints, pos.x, pos.y]);
+        break;
+      case MODES.DRAW :
+        let pts = points;
+        pts[pts.length - 2] = pos.x;
+        pts[pts.length - 1] = pos.y;
+        setPoints(pts);
+        break;
+    }
   };
+
+  const onDblClick = (e)=>{
+    if(MODE === MODES.PAINT){
+      setIsDrawEnable(false);
+      setElements((prevElements) => [
+       ...prevElements,
+        { points: points, fill: fill, key: count.current },
+      ]);
+      setPoints([]);
+    }
+  }
 
   useEffect(() => {
     const el = document.getElementById("canvas");
     setDims({ width: el.clientWidth, height: el.clientHeight });
-    stage.current.container().style.backgroundColor = "black";
     window.addEventListener("keydown", keyDownHandler);
     window.addEventListener("keyup", keyUpHandler);
   }, []);
@@ -135,6 +169,7 @@ function Canvas({ activeBitmap }) {
         onMouseUp={onUp}
         onMouseMove={onMove}
         onWheel={handleWheel}
+        onDblClick={onDblClick}
         scaleX={scale}
         scaleY={scale}
         ref={stage}
@@ -157,10 +192,11 @@ function Canvas({ activeBitmap }) {
               fill={element.fill}
               strokeWidth={8}
               stroke="gray"
+              closed={element.closed}
             />
           ))}
           {points.length >= 2 && (
-            <Line points={points} fill={fill} strokeWidth={8} stroke="gray" />
+            <Line points={points} fill={fill} strokeWidth={8} stroke="gray" closed={isClosed}/>
           )}
         </Layer>
       </Stage>

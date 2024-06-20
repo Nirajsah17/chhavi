@@ -1,7 +1,7 @@
 export default function Filter({ }) {
   return (
     <>
-      <div className="flex flex-col w-full h-full overflow-scroll">
+      <div className="flex flex-col w-full h-full overflow-y-auto">
 
         <div className="flex flex-col p-1">
           <div className="p-2">Brightness</div>

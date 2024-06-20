@@ -3,6 +3,7 @@ import { useState } from "react";
 import LeftNav from "./components/left-nav";
 import SideBar from "./components/sidebar";
 import Canvas from "./components/canvas";
+import NavBar from "./components/navbar";
 
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
@@ -25,12 +26,14 @@ function App() {
     <>
       <Router>
         <div className="w-full h-screen flex flex-col">
-          <div className="w-full flex h-12 p-1 bg-fg-subtle"></div>
+          <div className="w-full flex h-12 p-1 border border-b border-fg-default">
+            <NavBar></NavBar>
+          </div>
           <div className="w-full flex flex-1 p-1">
-            <div className="flex flex-col w-12 border border-accent-emphasis">
+            <div className="flex flex-col w-12">
               <LeftNav fileHandler={fileHandler}></LeftNav>
             </div>
-            <div className="flex flex-wrap w-72 bg-bg-emphasis text-white">
+            <div className="flex flex-wrap w-72 h-full border border-fg-default">
               <Routes>
                 <Route path="/" element={<SideBar navItem="default" />} />
                 <Route path="assets" element={<SideBar navItem="assets" files={files} openFile={openFile}/>} />
@@ -43,7 +46,7 @@ function App() {
               <Canvas activeBitmap={activeBitmap}></Canvas>
             </div>
           </div>
-          <div className="w-full flex h-12 p-1 bg-fg-subtle"></div>
+          <div className="w-full flex h-12 p-1 border border-t border-fg-default"></div>
         </div>
       </Router>
     </>
