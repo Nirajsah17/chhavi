@@ -1,28 +1,41 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  brightness,
+  contrast,
+  saturation,
+  hue,
+  sepia,
+  blur,
+  noise,
+  pixelate,
+  mask,
+  grayScale,
+  invert,
+  kaleidoscope,
+} from "../redux/actions/filterAction";
 
-export default function Filter({}) {
-  const [filters, setFilter] = useState({
-    brightness: 20,
-    contrast: 20,
-    saturation: 20,
-    hue: 20,
-    sepia: 20,
-    invert: 20,
-    blur: 20,
-    noise: 20,
-    blur: 20,
-    pixelate: 20,
-    mask: 20,
-    grayScale: false,
-    invert: false,
-    kaleidoscope: 20,
-  });
+const handlers = {
+  'brightness': brightness,
+  'contrast': contrast,
+  'saturation': saturation,
+  'hue': hue,
+  'sepia': sepia,
+  'blur': blur,
+  'noise': noise,
+  'pixelate': pixelate,
+  'mask': mask,
+  'grayScale': grayScale,
+  'invert': invert,
+  'kaleidoscope': kaleidoscope,
+}
 
+export default function Filter() {
+  const filters  = useSelector(state => state.filterReducer);
+  const dispatch = useDispatch();
   const handleSlider = (e) => {
-    setFilter({
-     ...filters,
-      [e.target.id]: e.target.value,
-    });
+    const fname = e.target.id;
+    const value = e.target.value;
+    dispatch(handlers[fname](value));
   };
 
   return (
@@ -143,7 +156,11 @@ export default function Filter({}) {
         <div className="flex flex-col p-1">
           <div className="p-2">Gray scale</div>
           <div className="flex flex-row p-1 justify-between items-center">
-            <input id="grayScale" type="checkbox" checked={filters.grayScale}></input>
+            <input
+              id="grayScale"
+              type="checkbox"
+              checked={filters.grayScale}
+            ></input>
           </div>
         </div>
 

@@ -1,8 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileUpload, faImage, faSlidersH, faGear, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { uploadFiles } from '../redux/actions/appAction'
 
-function LeftNav({ fileHandler }) {
+function LeftNav() {
+  const dispatch = useDispatch();
+
   const handleUpload = (e) => {
     const el = document.createElement("input");
     el.setAttribute("type", "file");
@@ -11,7 +15,8 @@ function LeftNav({ fileHandler }) {
     el.click();
     el.addEventListener("change", (e) => {
       const files = e.target.files;
-      fileHandler([...files]);
+      // fileHandler([...files]);
+      dispatch(uploadFiles([...files]))
     });
   };
 

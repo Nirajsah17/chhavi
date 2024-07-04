@@ -1,4 +1,7 @@
-export default function ImgGRids({ files, openFile }) {
+import { useSelector } from "react-redux";
+
+export default function ImgGRids({ files, activeFile }) {
+  const files = useSelector(state => state.appReducer);
   return (
     <>
       {files?.map((file) => {
