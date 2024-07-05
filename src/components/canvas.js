@@ -1,12 +1,18 @@
 import { Stage, Layer, Image, Line } from "react-konva";
 import { useState, useEffect, useRef } from "react";
-import { getImageOptions } from "../utils/utills";
 import { useSelector, useDispatch } from "react-redux";
 
-function Canvas({ activeBitmap }) {
-  const [dims, setDims] = useState({ width: 200, height: 200 });
+import { setCanvasDims } from "../redux/actions/canvasActions";
 
-  const [panning, setPanning] = useState(false);
+import { setStage } from "../redux/actions/appAction";
+
+function Canvas() {
+  const activeBitmap = useSelector((state) => state.appReducer.activeBitMap);
+
+  const { scale, canvasDims, isPanning, } = useSelector((state) => state.canvasReducer);
+  const filters = useSelector((state) => state.filterReducer);
+
+  const dispatch = useDispatch();
   const [imgOptions, setImgOptions] = useState({});
 
   const stage = useRef(null);
@@ -14,34 +20,25 @@ function Canvas({ activeBitmap }) {
   const imageRef = useRef(0);
   const scaleBy = 1.08;
 
-  const keyDownHandler = (e) => {
-    setPanning(true);
-  };
+  // const keyDownHandler = (e) => {
+  //   setPanning(true);
+  // };
 
-  const keyUpHandler = (e) => {
-    setPanning(false);
-  };
-
-  const filters = useSelector((state) => state.filterReducer);
+  // const keyUpHandler = (e) => {
+  //   setPanning(false);
+  // };
 
   useEffect(() => {
     const el = document.getElementById("canvas");
-    setDims({ width: el.clientWidth, height: el.clientHeight });
-    window.addEventListener("keydown", keyDownHandler);
-    window.addEventListener("keyup", keyUpHandler);
-  }, []);
-
-  useEffect(() => {
-    if (!activeBitmap) return;
-    const options = {
-      imgWidth: activeBitmap.width,
-      imgHeight: activeBitmap.height,
-      imgBitmap: activeBitmap,
-      stage: stage.current,
+    const dims = {
+      width: el.clientWidth,
+      height: el.clientHeight,
     };
-    const imgOptions = getImageOptions(options);
-    setImgOptions(imgOptions);
-  }, [activeBitmap]);
+    console.log(dims);
+    dispatch(setCanvasDims(dims));
+    // window.addEventListener("keydown", keyDownHandler);
+    // window.addEventListener("keyup", keyUpHandler);
+  }, []);
 
   const handleWheel = (e) => {
     e.evt.preventDefault();
@@ -75,12 +72,14 @@ function Canvas({ activeBitmap }) {
   return (
     <>
       <Stage
-        width={dims.width}
-        height={dims.height}
+        width={canvasDims.width}
+        height={canvasDims.height}
         onWheel={handleWheel}
+        scaleX={scale}
+        scaleY={scale}
         ref={stage}
       >
-        <Layer name="background" ref={layer} draggable={panning}>
+        <Layer name="background" ref={layer} draggable={isPanning}>
           {activeBitmap && (
             <Image
               x={imgOptions.x}

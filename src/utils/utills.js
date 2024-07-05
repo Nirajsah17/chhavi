@@ -1,14 +1,14 @@
 function getImageOptions(args) {
-  const { imgWidth, imgHeight, imgBitmap, stage } = args;
-  let stageW = stage.width(),
-    stageH = stage.height(),
-    wRatio = stageW / imgWidth,
-    hRatio = stageH / imgHeight,
+  const {  imgBitmap, stage } = args;
+  let stageW = stage.width,
+    stageH = stage.height,
+    wRatio = stageW / imgBitmap.width,
+    hRatio = stageH / imgBitmap.height,
     ratio = Math.min(wRatio, hRatio),
-    centerShiftX = Math.round((stageW - imgWidth * ratio) / 2),
-    centerShiftY = Math.round((stageH - imgHeight * ratio) / 2),
-    scaledImageWidth = imgWidth * ratio,
-    scaledImageHeight = imgHeight * ratio;
+    centerShiftX = Math.round((stageW - imgBitmap.width * ratio) / 2),
+    centerShiftY = Math.round((stageH - imgBitmap.height * ratio) / 2),
+    scaledImageWidth = imgBitmap * ratio,
+    scaledImageHeight = imgBitmap.height * ratio;
   return {
     x: centerShiftX,
     y: centerShiftY,
@@ -19,4 +19,15 @@ function getImageOptions(args) {
   };
 }
 
-export { getImageOptions };
+function getFile(files, filename){
+  let _file = null;
+  if(!files.length) return;
+  files.forEach(file => {
+    if(file.name === filename){
+      _file = file;
+    }
+  });
+  return _file
+}
+
+export { getImageOptions, getFile };

@@ -1,6 +1,10 @@
 const initialState = {
   files: [],
+  activeBitMap: null,
   theme: "light",
+  activeImage: null,
+  ImageOptions: {},
+  stage: null
 };
 
 const appReducer = (state = initialState, action) => {
@@ -16,6 +20,27 @@ const appReducer = (state = initialState, action) => {
         ...state,
         theme: action.payload,
       };
+    case "ACTIVE_BITMAP":
+      return {
+        ...state,
+        activeBitMap: action.payload
+      }
+    case "ACTIVE_IMAGE":
+      return {
+        ...state,
+        activeImage: action.payload
+      };
+    case "IMAGE_OPTIONS":
+      return {
+        ...state,
+        ImageOptions: {...action.payload},
+      };
+    case "STAGE":
+      return {
+        ...state,
+        stage: action.payload,
+      };
+
     default:
       return initialState;
   }

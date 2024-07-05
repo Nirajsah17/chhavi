@@ -1,58 +1,73 @@
 const initialState = {
-  "zoom_in": 1,
-  "zoom_out": 1,
-  "scale": 1,
-  "pan": false,
-  "brush_color": "#738",
-  "stroke_color": "#FFFFFF",
-  "cursor_type": "default",
-  "stroke_width": 2,
-}
+  zoomIn: 1,
+  zoomOut: 1,
+  scale: 1,
+  scaleFactor: 1.08,
+  pan: false,
+  brushColor: "#738",
+  strokeColor: "#FFFFFF",
+  cursorType: "default",
+  strokeWidth: 2,
+  canvasDims: { width: 200, height: 200 },
+};
 
-const canvasReducer = (state=initialState, action)=>{
+const canvasReducer = (state = initialState, action) => {
   const type = action.type;
-  switch(type){
-    case 'ZOOM_IN':
+  switch (type) {
+    case "ZOOM_IN":
       return {
         ...state,
-        zoom_in: action.payload,
+        zoomIn: action.payload,
       };
-    case 'ZOOM_OUT':
+    case "ZOOM_OUT":
       return {
         ...state,
-        zoom_out: action.payload,
+        zoomOut: action.payload,
       };
-    case 'SCALE':
+    case "SCALE":
       return {
         ...state,
-        scale: action.payload
+        scale: action.payload,
       };
-    case 'PAN':
+    case "PAN":
       return {
         ...state,
-        pan: action.payload
+        pan: action.payload,
       };
-    case 'BRUSH_COLOR':
+    case "BRUSH_COLOR":
       return {
         ...state,
-        brush_color: action.payload
+        brushColor: action.payload,
       };
-    case 'STROKE_COLOR':
+    case "STROKE_COLOR":
       return {
         ...state,
-        stroke_color: action.payload
+        strokeColor: action.payload,
       };
-    case 'CURSOR_TYPE':
+    case "CURSOR_TYPE":
       return {
         ...state,
-        cursor_type: action.payload
+        cursorType: action.payload,
       };
-    case 'STROKE_WIDTH':
+    case "STROKE_WIDTH":
       return {
         ...state,
-        stroke_width: action.payload
+        strokeWidth: action.payload,
       };
-    default :
+    case "CANVAS_DIMS":
+      return {
+        ...state,
+        canvasDims: { ...state.canvasDims,...action.payload },
+      };
+    case "SCALE_FACTOR":
+      return {
+        ...state,
+        scaleFactor: action.payload,
+      };
+
+    default:
       return initialState;
   }
-}
+};
+
+export default canvasReducer;

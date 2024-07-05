@@ -37,7 +37,7 @@ function App() {
             <div className="flex flex-wrap w-72 h-full bg-bg-inset overflow-y-auto  scroll-smooth fancy-scrollbar fancy-thumb">
               <Routes>
                 <Route path="/" element={<SideBar navItem="default" />} />
-                <Route path="assets" element={<SideBar navItem="assets" files={files} openFile={openFile}/>} />
+                <Route path="assets" element={<SideBar navItem="assets"/>} />
                 <Route path="/filter" element={<SideBar navItem="filter"/>} />
                 <Route path="/settings" element={<SideBar navItem="settings"/>} />
                 <Route path="/free-hand" element={<SideBar navItem="free-hand"/>} />

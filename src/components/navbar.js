@@ -21,7 +21,7 @@ export default function NavBar({}) {
     <>
       <div className="w-full flex flex-row bg-bg-default justify-between items-center">
           {/* <img src={AppIcon} width={200} height={150}></img> */}
-          <h1 className="p-1 text-lg text-pretty text-fg-accent font-semibold font-sans cursor-default">Chhavi</h1>
+          <h1 className="p-1 text-lg text-pretty text-fg-accent font-semibold font-sans cursor-default"></h1>
         <div></div>
         <div className="p-1">
           <label className="inline-flex items-center cursor-pointer" title="dark/light">

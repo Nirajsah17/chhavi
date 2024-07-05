@@ -8,9 +8,23 @@ export const theme = (theme)=>({
   payload: theme
 });
 
-export const activeImage = (name)=>({
+export const activeFile = (name)=>({
   type: 'ACTIVE_IMAGE',
   payload: name
 });
 
 
+export const activeBitMap = (bitmap)=>({
+  type: 'ACTIVE_BITMAP',
+  payload: bitmap
+});
+
+export const ImageOptions = (options)=>({
+  type: 'IMAGE_OPTIONS',
+  payload: options
+});
+
+export const setStage = (stage)=>({
+  type: 'STAGE',
+  payload: stage
+});
