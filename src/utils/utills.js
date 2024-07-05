@@ -7,7 +7,7 @@ function getImageOptions(args) {
     ratio = Math.min(wRatio, hRatio),
     centerShiftX = Math.round((stageW - imgBitmap.width * ratio) / 2),
     centerShiftY = Math.round((stageH - imgBitmap.height * ratio) / 2),
-    scaledImageWidth = imgBitmap * ratio,
+    scaledImageWidth = imgBitmap.width * ratio,
     scaledImageHeight = imgBitmap.height * ratio;
   return {
     x: centerShiftX,

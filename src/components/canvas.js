@@ -1,20 +1,18 @@
 import { Stage, Layer, Image, Line } from "react-konva";
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { setCanvasDims } from "../redux/actions/canvasActions";
-
-import { setStage } from "../redux/actions/appAction";
+// import { setStage } from "../redux/actions/appAction";
 
 function Canvas() {
-  const activeBitmap = useSelector((state) => state.appReducer.activeBitMap);
-
-  const { scale, canvasDims, isPanning, } = useSelector((state) => state.canvasReducer);
+  const imageOptions = useSelector((state) => state.appReducer.imageOptions);
+  const { scale, canvasDims, isPanning } = useSelector(
+    (state) => state.canvasReducer
+  );
   const filters = useSelector((state) => state.filterReducer);
 
   const dispatch = useDispatch();
-  const [imgOptions, setImgOptions] = useState({});
-
+  // const [imgOptions, setImgOptions] = useState({});
   const stage = useRef(null);
   const layer = useRef(null);
   const imageRef = useRef(0);
@@ -28,14 +26,29 @@ function Canvas() {
   //   setPanning(false);
   // };
 
+  var ro = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      const cr = entry.contentRect;
+      console.log(cr.width, cr.height);
+      const dims = {
+        width:cr.width,
+        height:cr.height,
+      };
+      dispatch(setCanvasDims(dims));
+    }
+  });
+
+  
   useEffect(() => {
     const el = document.getElementById("canvas");
     const dims = {
       width: el.clientWidth,
       height: el.clientHeight,
     };
-    console.log(dims);
+    // ro.observe(el);
+    // console.log(dims);
     dispatch(setCanvasDims(dims));
+    
     // window.addEventListener("keydown", keyDownHandler);
     // window.addEventListener("keyup", keyUpHandler);
   }, []);
@@ -80,13 +93,13 @@ function Canvas() {
         ref={stage}
       >
         <Layer name="background" ref={layer} draggable={isPanning}>
-          {activeBitmap && (
+          {imageOptions.image && (
             <Image
-              x={imgOptions.x}
-              y={imgOptions.y}
-              width={imgOptions.width}
-              height={imgOptions.height}
-              image={activeBitmap}
+              x={imageOptions.x}
+              y={imageOptions.y}
+              width={imageOptions.width}
+              height={imageOptions.height}
+              image={imageOptions.image}
               ref={imageRef}
             />
           )}

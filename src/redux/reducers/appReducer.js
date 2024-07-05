@@ -3,7 +3,7 @@ const initialState = {
   activeBitMap: null,
   theme: "light",
   activeImage: null,
-  ImageOptions: {},
+  imageOptions: {},
   stage: null
 };
 
@@ -33,7 +33,7 @@ const appReducer = (state = initialState, action) => {
     case "IMAGE_OPTIONS":
       return {
         ...state,
-        ImageOptions: {...action.payload},
+        imageOptions: {...action.payload},
       };
     case "STAGE":
       return {

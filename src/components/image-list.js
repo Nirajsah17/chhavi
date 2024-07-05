@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getFile, getImageOptions } from "../utils/utills";
-import { activeBitMap, activeFile } from "../redux/actions/appAction";
+import { activeBitMap, activeFile, setImageOptions } from "../redux/actions/appAction";
 
 export default function ImgGRids() {
   const { files, activeImage } = useSelector((state) => state.appReducer);
   const { canvasDims } = useSelector((state) => state.canvasReducer);
+
   console.log(canvasDims);
   const dispatch = useDispatch();
   const openFile = async (e) => {
@@ -17,6 +18,7 @@ export default function ImgGRids() {
       dispatch(activeFile(file.name));
       const res = getImageOptions({ imgBitmap: bitmap, stage: canvasDims });
       console.log(res);
+      dispatch(setImageOptions(res));
     }
   };
 

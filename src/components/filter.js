@@ -15,26 +15,39 @@ import {
 } from "../redux/actions/filterAction";
 
 const handlers = {
-  'brightness': brightness,
-  'contrast': contrast,
-  'saturation': saturation,
-  'hue': hue,
-  'sepia': sepia,
-  'blur': blur,
-  'noise': noise,
-  'pixelate': pixelate,
-  'mask': mask,
-  'grayScale': grayScale,
-  'invert': invert,
-  'kaleidoscope': kaleidoscope,
-}
+  brightness: brightness,
+  contrast: contrast,
+  saturation: saturation,
+  hue: hue,
+  sepia: sepia,
+  blur: blur,
+  noise: noise,
+  pixelate: pixelate,
+  mask: mask,
+  grayScale: grayScale,
+  invert: invert,
+  kaleidoscope: kaleidoscope,
+};
 
 export default function Filter() {
-  const filters  = useSelector(state => state.filterReducer);
+  const {
+    brightness,
+    contrast,
+    saturation,
+    hue,
+    sepia,
+    blur,
+    noise,
+    pixelate,
+    mask,
+    grayScale,
+    invert,
+    kaleidoscope,
+  } = useSelector((state) => state.filterReducer);
   const dispatch = useDispatch();
   const handleSlider = (e) => {
     const fname = e.target.id;
-    const value = e.target.value;
+    const value = Number(e.target.value);
     dispatch(handlers[fname](value));
   };
 
@@ -51,9 +64,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.brightness}
+              value={brightness}
             ></input>
-            <div className="p-2">{filters.brightness}</div>
+            <div className="p-2">{brightness}</div>
           </div>
         </div>
 
@@ -67,9 +80,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.contrast}
+              value={contrast}
             ></input>
-            <div className="p-2">{filters.contrast}</div>
+            <div className="p-2">{contrast}</div>
           </div>
         </div>
 
@@ -83,9 +96,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.saturation}
+              value={saturation}
             ></input>
-            <div className="p-2">{filters.saturation}</div>
+            <div className="p-2">{saturation}</div>
           </div>
         </div>
 
@@ -99,9 +112,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.blur}
+              value={blur}
             ></input>
-            <div className="p-2">{filters.blur}</div>
+            <div className="p-2">{blur}</div>
           </div>
         </div>
 
@@ -115,9 +128,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.noise}
+              value={noise}
             ></input>
-            <div className="p-2">{filters.noise}</div>
+            <div className="p-2">{noise}</div>
           </div>
         </div>
 
@@ -131,9 +144,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.pixelate}
+              value={pixelate}
             ></input>
-            <div className="p-2">{filters.pixelate}</div>
+            <div className="p-2">{pixelate}</div>
           </div>
         </div>
 
@@ -147,9 +160,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.mask}
+              value={mask}
             ></input>
-            <div className="p-2">{filters.mask}</div>
+            <div className="p-2">{mask}</div>
           </div>
         </div>
 
@@ -159,7 +172,7 @@ export default function Filter() {
             <input
               id="grayScale"
               type="checkbox"
-              checked={filters.grayScale}
+              checked={grayScale}
             ></input>
           </div>
         </div>
@@ -167,7 +180,7 @@ export default function Filter() {
         <div className="flex flex-col p-1">
           <div className="p-2">Invert</div>
           <div className="flex flex-row p-1 justify-between items-center">
-            <input id="invert" type="checkbox" checked={filters.invert}></input>
+            <input id="invert" type="checkbox" checked={invert}></input>
           </div>
         </div>
 
@@ -181,9 +194,9 @@ export default function Filter() {
               className="slider"
               max={100}
               min={1}
-              value={filters.kaleidoscope}
+              value={kaleidoscope}
             ></input>
-            <div className="p-2">{filters.kaleidoscope}</div>
+            <div className="p-2">{kaleidoscope}</div>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ export const activeBitMap = (bitmap)=>({
   payload: bitmap
 });
 
-export const ImageOptions = (options)=>({
+export const setImageOptions = (options)=>({
   type: 'IMAGE_OPTIONS',
   payload: options
 });
