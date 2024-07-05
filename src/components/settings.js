@@ -2,7 +2,7 @@ import { useState } from "react";
 import { searchUnsplash } from "../utils/unsplash.utils";
 import { useSelector, useDispatch } from "react-redux";
 import { getImageOptions, createBitmapFromURI } from "../utils/utills";
-import { setImageOptions } from "../redux/actions/appAction";
+import { setImageOptions, uploadFiles } from "../redux/actions/appAction";
 
 export default function Settings() {
   const size = "14"; // use store so that it can be used to as setting config
@@ -27,11 +27,11 @@ export default function Settings() {
     if (!id) return;
     const file = files.find((f) => f.id === id);
     if (!file) return;
-    const bitmap = await createBitmapFromURI(file.urls.full)
-    // const bitmap = await createImageBitmap(file.urls.full);
-    console.log(bitmap);
+    const { bitmap, blob } = await createBitmapFromURI(file.urls.full);
     const res = getImageOptions({ imgBitmap: bitmap, stage: canvasDims });
     dispatch(setImageOptions(res));
+    const fileObj = new File([blob], file.id, { type: 'image/png' });
+    dispatch(uploadFiles([fileObj]))
   };
 
   const updateSearch = (e) => {

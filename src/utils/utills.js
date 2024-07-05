@@ -34,7 +34,7 @@ async function createBitmapFromURI(url){
   const response = await fetch(url, { mode: 'cors' });
   const blob = await response.blob();
   const bitmap = await createImageBitmap(blob);
-  return bitmap;
+  return {bitmap, blob};
 }
 
 export { getImageOptions, getFile, createBitmapFromURI};
