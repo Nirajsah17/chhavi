@@ -1,7 +1,7 @@
 import { Stage, Layer, Image, Line } from "react-konva";
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setCanvasDims } from "../redux/actions/canvasActions";
+import { setCanvasDims, setIsPanning } from "../redux/actions/canvasActions";
 // import { setStage } from "../redux/actions/appAction";
 
 function Canvas() {
@@ -18,13 +18,13 @@ function Canvas() {
   const imageRef = useRef(0);
   const scaleBy = 1.08;
 
-  // const keyDownHandler = (e) => {
-  //   setPanning(true);
-  // };
+  const keyDownHandler = (e) => {
+    dispatch(setIsPanning(true))
+  };
 
-  // const keyUpHandler = (e) => {
-  //   setPanning(false);
-  // };
+  const keyUpHandler = (e) => {
+    dispatch(setIsPanning(false))
+  };
 
   var ro = new ResizeObserver(entries => {
     for (let entry of entries) {

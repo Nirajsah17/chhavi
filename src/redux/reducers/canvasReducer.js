@@ -8,7 +8,7 @@ const initialState = {
   strokeColor: "#FFFFFF",
   cursorType: "default",
   strokeWidth: 2,
-  canvasDims: { width: 200, height: 200 },
+  canvasDims: { width: 1000, height: 600 },
 };
 
 const canvasReducer = (state = initialState, action) => {

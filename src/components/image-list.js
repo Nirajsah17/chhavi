@@ -6,7 +6,6 @@ export default function ImgGRids() {
   const { files, activeImage } = useSelector((state) => state.appReducer);
   const { canvasDims } = useSelector((state) => state.canvasReducer);
 
-  console.log(canvasDims);
   const dispatch = useDispatch();
   const openFile = async (e) => {
     const filename = e.target.alt;
@@ -14,7 +13,7 @@ export default function ImgGRids() {
     const file = getFile(files, filename);
     if (file) {
       const bitmap = await createImageBitmap(file);
-      dispatch(activeBitMap(bitmap));
+      // dispatch(activeBitMap(bitmap));
       dispatch(activeFile(file.name));
       const res = getImageOptions({ imgBitmap: bitmap, stage: canvasDims });
       console.log(res);

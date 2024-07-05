@@ -17,7 +17,7 @@ function App() {
             <NavBar></NavBar>
           </div>
           <div className="w-full flex flex-1">
-            <div className="flex flex-col w-12 h-full bg-bg-default shadow-lg">
+            <div className="bg-bg-default shadow-lg">
               <LeftNav ></LeftNav>
             </div>
             <div className="flex flex-wrap w-72 h-full bg-bg-inset overflow-y-auto  scroll-smooth fancy-scrollbar fancy-thumb">

@@ -30,4 +30,11 @@ function getFile(files, filename){
   return _file
 }
 
-export { getImageOptions, getFile };
+async function createBitmapFromURI(url){
+  const response = await fetch(url, { mode: 'cors' });
+  const blob = await response.blob();
+  const bitmap = await createImageBitmap(blob);
+  return bitmap;
+}
+
+export { getImageOptions, getFile, createBitmapFromURI};

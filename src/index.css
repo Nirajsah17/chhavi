@@ -361,3 +361,12 @@
     --tp-monitor-foreground-color: var(--fg-default);
   }
 }
+
+@keyframes spin {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(360deg); }
+}
+
+.spin-x {
+  animation: spin 1s linear infinite;
+}
