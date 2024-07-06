@@ -14,7 +14,6 @@ const initialState = {
 };
 
 const filterReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case "BRIGHTNESS":
       return {

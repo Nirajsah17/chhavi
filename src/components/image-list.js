@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getFile, getImageOptions } from "../utils/utills";
 import { activeBitMap, activeFile, setImageOptions } from "../redux/actions/appAction";
+import { setScale } from "../redux/actions/canvasActions"
 
 export default function ImgGRids() {
   const { files, activeImage } = useSelector((state) => state.appReducer);
@@ -18,6 +19,7 @@ export default function ImgGRids() {
       const res = getImageOptions({ imgBitmap: bitmap, stage: canvasDims });
       console.log(res);
       dispatch(setImageOptions(res));
+      // dispatch(setScale(1))
     }
   };
 

@@ -41,26 +41,26 @@ export default function Settings() {
   return (
     <>
       <div className="w-full h-full flex flex-col">
-        <div className="flex rounded-sm p-1 border border-border-default shadow-sm">
+        <div className="flex rounded-sm p-1 shadow-sm">
           <input
             type="text"
-            className="p-1.5 w-full rounded-sm outline-none bg-bg-default text-sm"
+            className="p-1.5 w-full bg-bg-default appearance-none border-2 border-border-default rounded-sm focus:outline-none focus:ring-purple-600 focus:border-purple-600 hover:border-bg-overlay text-sm"
             value={searchVal}
             onChange={updateSearch}
             placeholder="search unsplash .."
           />
           <button
-            className="p-1.5 rounded-sm hover:hover:bg-bg-overlay"
+            className="p-1.5 rounded-sm border-2 border-border-default hover:bg-bg-emphasis"
             onClick={searchImages}
           >
             Search
           </button>
         </div>
-        <div className={isProgress ? "h-0.5 bg-blue-500 spin-x" : ""}></div>
+        <div className={isProgress ? "h-0.5 bg-bg-accentEmphasis spin-x" : ""}></div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {files.map((file) => (
             <img
-              className={`h-auto max-w-full rounded-sm cursor-pointer hover:opacity-35`}
+              className={`p-0.5 h-auto max-w-full rounded-sm cursor-pointer hover:opacity-70 border-2 hover:border-border-accentEmphasis`}
               src={file.urls.small}
               alt={file.alt_description}
               key={file.id}

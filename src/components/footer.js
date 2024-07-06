@@ -5,10 +5,12 @@ export default function Footer({}) {
   return (
     <>
       <div className="w-full flex flex-row bg-bg-default justify-between items-center">
-        <div className="p-1 text-sm w-64 truncate">{activeImage}</div>
-        <div className=" text-sm"> © copyright - 2024 | Chhavi editor</div>
-        <div>
-        </div>
+        <span className="w-64 text-fg-default text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-bg-default truncate">
+          {activeImage}
+        </span>
+        {/* <div className="p-1 text-sm w-64 truncate">{activeImage}</div> */}
+        <div className="text-fg-default text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-bg-default"> © copyright - 2024</div>
+        <div></div>
       </div>
     </>
   );
