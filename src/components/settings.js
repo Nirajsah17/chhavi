@@ -60,7 +60,7 @@ export default function Settings() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {files.map((file) => (
             <img
-              className={`h-auto max-w-full rounded-sm cursor-pointer`}
+              className={`h-auto max-w-full rounded-sm cursor-pointer hover:opacity-35`}
               src={file.urls.small}
               alt={file.alt_description}
               key={file.id}

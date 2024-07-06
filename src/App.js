@@ -20,7 +20,7 @@ function App() {
             <div className="bg-bg-default shadow-lg">
               <LeftNav ></LeftNav>
             </div>
-            <div className="flex flex-wrap w-72 h-full bg-bg-inset overflow-y-auto  scroll-smooth fancy-scrollbar fancy-thumb">
+            <div className="flex flex-wrap w-80 h-full bg-bg-inset overflow-y-auto  scroll-smooth fancy-scrollbar fancy-thumb">
               <Routes>
                 <Route path="/" element={<SideBar navItem="default" />} />
                 <Route path="assets" element={<SideBar navItem="assets" />} />

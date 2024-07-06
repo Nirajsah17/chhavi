@@ -1,6 +1,7 @@
 import { Stage, Layer, Image, Line } from "react-konva";
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { UploadWindow } from "./upload";
 import { setCanvasDims, setIsPanning } from "../redux/actions/canvasActions";
 // import { setStage } from "../redux/actions/appAction";
 
@@ -9,7 +10,9 @@ function Canvas() {
   const { scale, canvasDims, isPanning } = useSelector(
     (state) => state.canvasReducer
   );
+
   const filters = useSelector((state) => state.filterReducer);
+  const files = useSelector((state) => state.appReducer.files);
 
   const dispatch = useDispatch();
   // const [imgOptions, setImgOptions] = useState({});
@@ -84,27 +87,29 @@ function Canvas() {
 
   return (
     <>
-      <Stage
-        width={canvasDims.width}
-        height={canvasDims.height}
-        onWheel={handleWheel}
-        scaleX={scale}
-        scaleY={scale}
-        ref={stage}
-      >
-        <Layer name="background" ref={layer} draggable={isPanning}>
-          {imageOptions.image && (
-            <Image
-              x={imageOptions.x}
-              y={imageOptions.y}
-              width={imageOptions.width}
-              height={imageOptions.height}
-              image={imageOptions.image}
-              ref={imageRef}
-            />
-          )}
-        </Layer>
-      </Stage>
+    {
+      files.length ? <Stage
+      width={canvasDims.width}
+      height={canvasDims.height}
+      onWheel={handleWheel}
+      scaleX={scale}
+      scaleY={scale}
+      ref={stage}
+    >
+      <Layer name="background" ref={layer} draggable={isPanning}>
+        {imageOptions.image && (
+          <Image
+            x={imageOptions.x}
+            y={imageOptions.y}
+            width={imageOptions.width}
+            height={imageOptions.height}
+            image={imageOptions.image}
+            ref={imageRef}
+          />
+        )}
+      </Layer>
+    </Stage> : <UploadWindow/>
+    }
     </>
   );
 }
