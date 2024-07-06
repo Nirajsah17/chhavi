@@ -30,7 +30,7 @@ export function UploadWindow() {
   return (
     <>
       <div
-        className={"flex items-center justify-center w-full h-full p-2 " + drag}
+        className={"flex items-center justify-center w-full h-full p-2 hover:text-purple-600 " + drag }
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         onDragLeave={handleDragLeave}
