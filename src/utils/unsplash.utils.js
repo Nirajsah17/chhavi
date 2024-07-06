@@ -1,4 +1,4 @@
-import config from "../config.json";
+import config from "../data/config.json";
 
 const fetchOptions = {
   method: "GET", // or 'POST', 'PUT', 'DELETE', etc.

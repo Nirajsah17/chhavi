@@ -81,13 +81,13 @@ function LeftNav() {
           </NavLink>
           
           <NavLink
-            to="/"
+            to="/element"
             className={({ isActive }) =>
               isActive
                 ? "nav-link text-fg-accent rounded-sm"
                 : "nav-link text-fg-default hover:text-fg-default"
             }
-            title="Search"
+            title="Settings"
           >
             <FontAwesomeIcon
               className="w-6 h-6 p-2 rounded-md hover:bg-bg-overlay text-fg-default cursor-pointer"
@@ -104,7 +104,7 @@ function LeftNav() {
                 ? "nav-link text-fg-accent rounded-sm"
                 : "nav-link text-fg-default hover:text-fg-default"
             }
-            title="Settings"
+            title="Search"
           >
             <FontAwesomeIcon
               className="w-6 h-6 p-2 rounded-md hover:bg-bg-overlay text-fg-default cursor-pointer"
