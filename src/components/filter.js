@@ -44,10 +44,11 @@ export default function Filter() {
     invert,
     kaleidoscope,
   } = useSelector((state) => state.filterReducer);
+  const files = useSelector((state) => state.appReducer.files);
   const dispatch = useDispatch();
   const handleSlider = (e) => {
     const fname = e.target.id;
-    const value = Number(e.target.value);
+    const value = Number(e. target.value);
     dispatch(handlers[fname](value));
   };
 
@@ -66,7 +67,7 @@ export default function Filter() {
               min={1}
               value={brightness}
             ></input>
-            <div className="p-2">{brightness}</div>
+            <div className="p-2">{brightness < 10 ? `0${brightness}`: brightness}</div>
           </div>
         </div>
 
@@ -82,7 +83,7 @@ export default function Filter() {
               min={1}
               value={contrast}
             ></input>
-            <div className="p-2">{contrast}</div>
+            <div className="p-2">{contrast < 10 ? `0${contrast}`:  contrast}</div>
           </div>
         </div>
 
@@ -98,7 +99,7 @@ export default function Filter() {
               min={1}
               value={saturation}
             ></input>
-            <div className="p-2">{saturation}</div>
+            <div className="p-2">{saturation < 10 ? `0${saturation}`: saturation}</div>
           </div>
         </div>
 
@@ -114,7 +115,7 @@ export default function Filter() {
               min={1}
               value={blur}
             ></input>
-            <div className="p-2">{blur}</div>
+            <div className="p-2">{blur < 10 ? `0${blur}`: blur}</div>
           </div>
         </div>
 
@@ -130,7 +131,7 @@ export default function Filter() {
               min={1}
               value={noise}
             ></input>
-            <div className="p-2">{noise}</div>
+            <div className="p-2">{noise < 10 ? `0${noise}`: noise}</div>
           </div>
         </div>
 
@@ -146,57 +147,7 @@ export default function Filter() {
               min={1}
               value={pixelate}
             ></input>
-            <div className="p-2">{pixelate}</div>
-          </div>
-        </div>
-
-        <div className="flex flex-col p-1">
-          <div className="p-2">Mask</div>
-          <div className="flex flex-row p-1 justify-between items-center">
-            <input
-              type="range"
-              onChange={handleSlider}
-              id="mask"
-              className="slider"
-              max={100}
-              min={1}
-              value={mask}
-            ></input>
-            <div className="p-2">{mask}</div>
-          </div>
-        </div>
-
-        <div className="flex flex-col p-1">
-          <div className="p-2">Gray scale</div>
-          <div className="flex flex-row p-1 justify-between items-center">
-            <input
-              id="grayScale"
-              type="checkbox"
-              checked={grayScale}
-            ></input>
-          </div>
-        </div>
-
-        <div className="flex flex-col p-1">
-          <div className="p-2">Invert</div>
-          <div className="flex flex-row p-1 justify-between items-center">
-            <input id="invert" type="checkbox" checked={invert}></input>
-          </div>
-        </div>
-
-        <div className="flex flex-col p-1">
-          <div className="p-2">Kaleidoscope</div>
-          <div className="flex flex-row p-1 justify-between items-center">
-            <input
-              type="range"
-              onChange={handleSlider}
-              id="kaleidoscope"
-              className="slider"
-              max={100}
-              min={1}
-              value={kaleidoscope}
-            ></input>
-            <div className="p-2">{kaleidoscope}</div>
+            <div className="p-2">{pixelate < 10 ? `0${pixelate}`: pixelate}</div>
           </div>
         </div>
       </div>

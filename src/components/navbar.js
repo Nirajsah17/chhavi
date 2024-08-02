@@ -14,7 +14,6 @@ export default function NavBar({}) {
         document.body.classList.add('light-theme');
         setTheme('light')
       }
-      // setTheme(th);
     });
   };
   return (
