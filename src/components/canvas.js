@@ -13,7 +13,6 @@ function Canvas() {
 
   const filters = useSelector((state) => state.filterReducer);
   const files = useSelector((state) => state.appReducer.files);
-
   const dispatch = useDispatch();
   // const [imgOptions, setImgOptions] = useState({});
   const stage = useRef(null);
@@ -96,7 +95,7 @@ function Canvas() {
       scaleY={scale}
       ref={stage}
     >
-      <Layer name="background" ref={layer} draggable={isPanning}>
+      <Layer name="background" ref={layer} draggable={true}>
         {imageOptions.image && (
           <Image
             x={imageOptions.x}

@@ -14,6 +14,7 @@ export default function Settings() {
   const { canvasDims } = useSelector((state) => state.canvasReducer);
 
   const searchImages = async (e) => {
+    if (!searchVal) return;
     setIsProgress(true);
     const res = await searchUnsplash(searchVal);
     if (res.results.length) {
@@ -50,7 +51,7 @@ export default function Settings() {
             placeholder="search unsplash .."
           />
           <button
-            className="p-1.5 rounded-sm border-2 border-border-default hover:bg-bg-emphasis"
+            className="p-1.5 rounded-sm border border-border-default"
             onClick={searchImages}
           >
             Search

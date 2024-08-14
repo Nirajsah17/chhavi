@@ -13,7 +13,7 @@ import {
   invert,
   kaleidoscope,
 } from "../redux/actions/filterAction";
-
+ 
 const handlers = {
   brightness: brightness,
   contrast: contrast,
@@ -45,11 +45,16 @@ export default function Filter() {
     kaleidoscope,
   } = useSelector((state) => state.filterReducer);
   const files = useSelector((state) => state.appReducer.files);
+
   const dispatch = useDispatch();
+
   const handleSlider = (e) => {
     const fname = e.target.id;
+    
     const value = Number(e. target.value);
-    dispatch(handlers[fname](value));
+    const eventName = handlers[fname](value);
+    console.log(eventName);
+    dispatch(eventName);
   };
 
   return (
